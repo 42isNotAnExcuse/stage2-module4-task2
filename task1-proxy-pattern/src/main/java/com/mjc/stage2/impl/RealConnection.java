@@ -1,6 +1,5 @@
 package com.mjc.stage2.impl;
 
-
 import com.mjc.stage2.Connection;
 
 public class RealConnection implements Connection {
