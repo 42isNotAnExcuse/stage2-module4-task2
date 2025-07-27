@@ -1,6 +1,5 @@
 package com.mjc.stage2.impl;
 
-
 import com.mjc.stage2.Connection;
 
 public class ProxyConnection implements Connection {
@@ -10,21 +9,20 @@ public class ProxyConnection implements Connection {
         this.realConnection = realConnection;
     }
 
-    public Connection reallyClose() {
-        // Write your code here!
-        realConnection.close();
-        return realConnection;
-    }
-
-    // Implement methods here!
-
     @Override
     public void close() {
-
+        // Return the connection to the pool instead of closing it
+        ConnectionPool.getInstance().releaseConnection(this);
     }
 
     @Override
     public boolean isClosed() {
-        return false;
+        return realConnection.isClosed();
+    }
+
+    public Connection reallyClose() {
+        // Actually closes the underlying real connection
+        realConnection.close();
+        return this;
     }
 }
