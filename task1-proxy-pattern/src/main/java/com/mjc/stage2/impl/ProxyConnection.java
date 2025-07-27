@@ -10,10 +10,10 @@ public class ProxyConnection implements Connection {
         this.realConnection = realConnection;
     }
 
-    public boolean reallyClose() {
+    public Connection reallyClose() {
         // Write your code here!
         realConnection.close();
-        return realConnection.isClosed();
+        return realConnection;
     }
 
     // Implement methods here!
