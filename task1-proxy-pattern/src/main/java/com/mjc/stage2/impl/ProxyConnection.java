@@ -12,7 +12,7 @@ public class ProxyConnection implements Connection {
 
     public boolean reallyClose() {
         // Write your code here!
-        if (!realConnection.isClosed()) realConnection.close();
+        realConnection.close();
         return realConnection.isClosed();
     }
 
