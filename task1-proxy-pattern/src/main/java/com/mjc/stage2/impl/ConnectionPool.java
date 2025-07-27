@@ -40,8 +40,10 @@ public class ConnectionPool {
 
     public void releaseConnection(Connection connection) {
         if (connection.getClass() == ProxyConnection.class) {
+            ProxyConnection removedConnection = (ProxyConnection)connection;
             usedConnections.remove(connection);
             freeConnections.offer((ProxyConnection) connection);
+            usedConnections.offer(removedConnection);
         } else {
             throw new RuntimeException(String.format(
                     "Wrong connection is detected: %s, should be ProxyConnection.class ", connection.getClass()));
